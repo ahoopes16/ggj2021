@@ -162,7 +162,7 @@ MonoBehaviour:
   - {fileID: 5966566092177541056, guid: 8c0859cdc1e745a4eb0cb619e28d8f09, type: 3}
   - {fileID: 5966566092177541056, guid: 8c0859cdc1e745a4eb0cb619e28d8f09, type: 3}
   - {fileID: 5966566092177541056, guid: 8c0859cdc1e745a4eb0cb619e28d8f09, type: 3}
-  - {fileID: 5966566092177541056, guid: 8c0859cdc1e745a4eb0cb619e28d8f09, type: 3}
+  - {fileID: 5966566092177541056, guid: 6a3a17e29f05dd04baa13974ebdd0b4a, type: 3}
   numItemsToUse: 10
 --- !u!4 &206743391
 Transform:
