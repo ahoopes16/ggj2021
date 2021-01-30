@@ -204,7 +204,9 @@ MonoBehaviour:
   - {fileID: 5966566092177541056, guid: 5b5c55bf633a9ed49a0031055aeb9461, type: 3}
   - {fileID: 5966566092177541056, guid: b44830e407b2b294aad4384991c5516e, type: 3}
   - {fileID: 5966566092177541056, guid: 586ec8f2199130946ad16763daa3673a, type: 3}
+  personPrefab: {fileID: 1051942265123575202, guid: 9b740d6edcc96b54aaaa19991c695081, type: 3}
   numItemsToUse: 10
+  numPeople: 2
 --- !u!4 &206743391
 Transform:
   m_ObjectHideFlags: 0
