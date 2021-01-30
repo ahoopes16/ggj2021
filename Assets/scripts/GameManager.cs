@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public int time = 0;
+    public float time = 0.0f;
     private string phase = "organization";
     // Start is called before the first frame update
     void Start()
@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(phase == "delivery") {
+            time += Time.deltaTime;
+        }
     }
 
     public void setPhase(string phase) {
