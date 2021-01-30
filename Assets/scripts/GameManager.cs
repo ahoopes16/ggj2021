@@ -6,14 +6,18 @@ public class GameManager : MonoBehaviour
 {
     public float time = 0.0f;
     public List<GameObject> items;
+    public GameObject personPrefab;
     public int numItemsToUse;
-    private string phase = "delivery";
+    public int numPeople;
+    private string phase = "organization";
     private float xRange = 3f;
     private float yRange = 3f;
+    private List<GameObject> unclaimedItems = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
+        
         if (numItemsToUse < 1)
         {
             numItemsToUse = 20;
@@ -31,7 +35,24 @@ public class GameManager : MonoBehaviour
 
             // Instantiate
             Debug.Log("Instantiating item " + item.name + " at position (" + randomX + "," + randomY + ")");
-            Instantiate(item, new Vector3(randomX, randomY, 0), Quaternion.identity);
+            GameObject createdObject = Instantiate(item, new Vector3(randomX, randomY, 0), Quaternion.identity);
+            unclaimedItems.Add(createdObject);
+        }
+
+        // Generate People
+        if(numPeople < 1)
+        {
+            numPeople = 10;
+        }
+
+        for(int i = 0; i < numPeople; i++)
+        {
+            int randomPosition = Random.Range(0, unclaimedItems.Count);
+            GameObject claimedItem = unclaimedItems[randomPosition];
+            unclaimedItems.RemoveAt(randomPosition);
+            GameObject newPerson = Instantiate(personPrefab, new Vector3(-12, 0, 0), Quaternion.identity);
+            Person personBehavior = newPerson.GetComponent<Person>();
+            personBehavior.setLostItem(claimedItem);
         }
     }
 
@@ -50,5 +71,11 @@ public class GameManager : MonoBehaviour
 
     public string getPhase() {
         return this.phase;
+    }
+
+    public GameObject getRandomGameObject()
+    {
+        int randomPosition = Random.Range(0, this.unclaimedItems.Count - 1);
+        return unclaimedItems[randomPosition];
     }
 }
