@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public float time = 0.0f;
     public List<GameObject> items;
     public int numItemsToUse;
-    private string phase = "organization";
+    private string phase = "delivery";
     private float xRange = 3f;
     private float yRange = 3f;
 
