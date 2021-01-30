@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 5966566092177541052}
   - component: {fileID: 5966566092177541053}
   - component: {fileID: 5966566092177541055}
-  - component: {fileID: 6720996963866718031}
+  - component: {fileID: 1814358912753255924}
   m_Layer: 0
-  m_Name: pokeball
+  m_Name: baseballCap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ff79d6ea9ff46c4468f47a9ba11d89ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b24780896cb5aa8468d6ab25dd5c70c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -145,7 +145,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6720996963866718031
+--- !u!114 &1814358912753255924
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

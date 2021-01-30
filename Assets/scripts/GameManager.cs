@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private float xRange = 3f;
     private float yRange = 3f;
     private List<GameObject> unclaimedItems = new List<GameObject>();
+    private ItemMetaData itemMetaData = new ItemMetaData();
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
             GameObject newPerson = Instantiate(personPrefab, new Vector3(-12, 0, 0), Quaternion.identity);
             Person personBehavior = newPerson.GetComponent<Person>();
             personBehavior.setLostItem(claimedItem);
+            personBehavior.setLostItemMetaData(itemMetaData.getMetaDataForItem(claimedItem.name));
         }
     }
 
@@ -71,11 +73,5 @@ public class GameManager : MonoBehaviour
 
     public string getPhase() {
         return this.phase;
-    }
-
-    public GameObject getRandomGameObject()
-    {
-        int randomPosition = Random.Range(0, this.unclaimedItems.Count - 1);
-        return unclaimedItems[randomPosition];
     }
 }

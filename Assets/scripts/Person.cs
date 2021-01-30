@@ -5,6 +5,7 @@ using UnityEngine;
 public class Person : MonoBehaviour
 {
     private GameObject lostItem;
+    private ItemData lostItemMetaData;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,10 @@ public class Person : MonoBehaviour
     public void setLostItem(GameObject item)
     {
         lostItem = item;
-        Debug.Log(lostItem);
+    }
+
+    public void setLostItemMetaData(ItemData itemMetaData)
+    {
+        lostItemMetaData = itemMetaData;
     }
 }
