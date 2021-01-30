@@ -5,10 +5,9 @@ using UnityEngine;
 public class draggable : MonoBehaviour
 {
     private bool isDragging = false;
-    private List<string> overlapping;
+    private List<string> overlapping = new List<string>();
 
     void Start() {
-        overlapping = new List<string>();
     }
     // Update is called once per frame
     void Update()
