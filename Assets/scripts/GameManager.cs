@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public float time = 0.0f;
     public List<GameObject> items;
     public int numItemsToUse;
-    private string phase = "organization";
+    private string phase = "delivery";
     private float xRange = 3f;
     private float yRange = 3f;
 
@@ -37,7 +38,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(phase == "delivery") {
+            time += Time.deltaTime;
+        }
     }
 
     public void setPhase(string phase) {
