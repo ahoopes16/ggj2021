@@ -100,11 +100,11 @@ public class GameManager : MonoBehaviour
             {
                 DisplayClueOne();
             }
-            if (timeSincePersonArrived > 7 && !isClueTwoDisplayed)
+            if (timeSincePersonArrived > 17 && !isClueTwoDisplayed)
             {
                 DisplayClueTwo();
             }
-            if (timeSincePersonArrived > 12 && !isClueThreeDisplayed)
+            if (timeSincePersonArrived > 32 && !isClueThreeDisplayed)
             {
                 DisplayClueThree();
             }

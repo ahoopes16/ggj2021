@@ -442,8 +442,8 @@ MonoBehaviour:
   - {fileID: 5966566092177541056, guid: b44830e407b2b294aad4384991c5516e, type: 3}
   - {fileID: 5966566092177541056, guid: 586ec8f2199130946ad16763daa3673a, type: 3}
   personPrefab: {fileID: 1051942265123575202, guid: 9b740d6edcc96b54aaaa19991c695081, type: 3}
-  numItemsToUse: 10
-  numPeople: 3
+  numItemsToUse: 30
+  numPeople: 10
   gameCanvas: {fileID: 366149111}
   organizationBell: {fileID: 8300000, guid: 694d9aebc5fba2843b92eef1f977717c, type: 3}
   deliveryBell: {fileID: 8300000, guid: 0b66fc29b3719af4697e16eaa18c8121, type: 3}
@@ -2503,7 +2503,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2729,7 +2729,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121004059}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -607.74, y: 281.39, z: 1}
+  m_LocalPosition: {x: -639.3, y: 279.5, z: 1}
   m_LocalScale: {x: 134.24504, y: 137.2618, z: 150.83713}
   m_Children: []
   m_Father: {fileID: 366149115}
