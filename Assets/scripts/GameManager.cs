@@ -74,4 +74,17 @@ public class GameManager : MonoBehaviour
     public string getPhase() {
         return this.phase;
     }
+
+    public void PutItemInBox(GameObject item, box boxComponent)
+    {
+        Debug.Log("GameManager is putting item " + item + " in box " + boxComponent);
+        boxComponent.addObject(item);
+        item.SetActive(false);
+    }
+
+    public void ValidateItemForPerson(GameObject item, Person person)
+    {
+        Debug.Log("GameManager is validating item " + item + " with person " + person);
+        person.ValidateItem(item);
+    }
 }

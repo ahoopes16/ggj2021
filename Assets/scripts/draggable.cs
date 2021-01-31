@@ -6,6 +6,12 @@ public class draggable : MonoBehaviour
 {
     private bool isDragging = false;
     private List<string> overlapping = new List<string>();
+    private GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
 
     void Update()
     {
@@ -37,15 +43,14 @@ public class draggable : MonoBehaviour
             if (boxComponent != null)
             {
                 Debug.Log("Colliding with a box!");
-                boxComponent.addObject(this.gameObject);
-                this.gameObject.SetActive(false);
+                gameManager.PutItemInBox(this.gameObject, boxComponent);
             }
             
             // It's a person! Give them the item for validation
             else if (personComponent != null)
             {
                 Debug.Log("Colliding with a person!");
-                personComponent.ValidateItem(this.gameObject);
+                gameManager.ValidateItemForPerson(this.gameObject, personComponent);
             }
         }
     }
