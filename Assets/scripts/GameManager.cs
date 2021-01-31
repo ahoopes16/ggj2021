@@ -34,10 +34,11 @@ public class GameManager : MonoBehaviour
         {
             // Get random item
             GameObject item = items[Random.Range(0, items.Count)];
+            items.Remove(item);
             item.gameObject.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
 
-            // Instantiate
-            GameObject createdObject = Instantiate(item, RandomPosition.GetRandomTablePosition(), Quaternion.identity);
+            GameObject createdObject;
+            createdObject = Instantiate(item, RandomPosition.GetRandomTablePosition(), Quaternion.identity);
             unclaimedItems.Add(createdObject);
         }
 
