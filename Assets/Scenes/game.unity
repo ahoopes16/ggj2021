@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 119513389}
   - component: {fileID: 119513391}
   - component: {fileID: 119513390}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Header
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 202849659}
   - component: {fileID: 202849661}
   - component: {fileID: 202849660}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Clue1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -574,7 +574,7 @@ GameObject:
   - component: {fileID: 366149112}
   - component: {fileID: 366149116}
   - component: {fileID: 366149117}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -639,7 +639,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1089770891
   m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &366149115
@@ -904,8 +904,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1089770891
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d697c2766d52fa441a67e287d2241ae6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -918,6 +918,147 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &456435214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 456435217}
+  - component: {fileID: 456435216}
+  - component: {fileID: 456435215}
+  m_Layer: 0
+  m_Name: KidsYellingMcDonalds
+  m_TagString: kidsaudio
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &456435215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456435214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92c6564ca48a4b246922e22d7e3bcf35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kidsYelling: {fileID: 8300000, guid: cb61b477aa2dca946afa5fd4bcb977b8, type: 3}
+--- !u!82 &456435216
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456435214}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &456435217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456435214}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &554863650
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,7 +1070,7 @@ GameObject:
   - component: {fileID: 554863651}
   - component: {fileID: 554863653}
   - component: {fileID: 554863652}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1008,7 +1149,7 @@ GameObject:
   - component: {fileID: 834474025}
   - component: {fileID: 834474027}
   - component: {fileID: 834474026}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Information
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1087,7 +1228,7 @@ GameObject:
   - component: {fileID: 864687989}
   - component: {fileID: 864687991}
   - component: {fileID: 864687990}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Final Time Intro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1165,7 +1306,7 @@ GameObject:
   m_Component:
   - component: {fileID: 891621309}
   - component: {fileID: 891621310}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: finalscore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1254,7 +1395,7 @@ GameObject:
   - component: {fileID: 931205947}
   - component: {fileID: 931205946}
   - component: {fileID: 931205945}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TitleButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1269,7 +1410,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931205943}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 100}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 554863651}
@@ -1462,7 +1603,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1112691872}
   - component: {fileID: 1112691873}
-  m_Layer: 5
+  - component: {fileID: 1112691874}
+  m_Layer: 0
   m_Name: FinalScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1516,6 +1658,23 @@ Canvas:
   m_SortingLayerID: -1089770891
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1112691874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112691871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &1355830740
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,7 +1686,7 @@ GameObject:
   - component: {fileID: 1355830741}
   - component: {fileID: 1355830743}
   - component: {fileID: 1355830742}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: PlayAgainText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1664,8 +1823,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1089770891
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 64f0530e515f1e742a76722489832e26, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1689,7 +1848,7 @@ GameObject:
   - component: {fileID: 1442974160}
   - component: {fileID: 1442974162}
   - component: {fileID: 1442974161}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Clue3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1769,7 +1928,7 @@ GameObject:
   - component: {fileID: 1469409653}
   - component: {fileID: 1469409652}
   - component: {fileID: 1469409654}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2005,7 +2164,7 @@ GameObject:
   - component: {fileID: 1790178318}
   - component: {fileID: 1790178320}
   - component: {fileID: 1790178319}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Clue2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2084,7 +2243,7 @@ GameObject:
   - component: {fileID: 1794446250}
   - component: {fileID: 1794446252}
   - component: {fileID: 1794446251}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: StartingMessage
   m_TagString: Untagged
   m_Icon: {fileID: 0}

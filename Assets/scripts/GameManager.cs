@@ -203,6 +203,7 @@ public class GameManager : MonoBehaviour
         else
         {
             gameComplete = true;
+            GameObject.FindGameObjectWithTag("kidsaudio").GetComponent<KidsYelling>().MakeKidsYell();
             gameCanvas.GetComponent<canvasFinalScore>().ShowFinalScore();
         }
     }
