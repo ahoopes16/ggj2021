@@ -10,6 +10,12 @@ public class GameManager : MonoBehaviour
     public int numItemsToUse;
     public int numPeople;
     public GameObject gameCanvas;
+    public AudioClip organizationBell;
+    public AudioClip deliveryBell;
+    public AudioClip organizationBGM;
+    public AudioClip deliveryBGM;
+    public AudioClip cassetteNoises;
+    private string lastAudio = "";
     private string phase = "organization";
     private List<GameObject> unclaimedItems = new List<GameObject>();
     private ItemMetaData itemMetaData = new ItemMetaData();
@@ -20,10 +26,15 @@ public class GameManager : MonoBehaviour
     private bool isClueTwoDisplayed = false;
     private bool isClueThreeDisplayed = false;
     private bool gameComplete = false;
+    private AudioSource audiosource;
+    private float timeSinceCheckOrX = 0;
+    private bool startingMessageShown = false;
+    private bool clearXAndCheckCalled = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        audiosource = GetComponent<AudioSource>();
         if (numItemsToUse < 1)
         {
             numItemsToUse = 20;
@@ -41,14 +52,50 @@ public class GameManager : MonoBehaviour
             createdObject = Instantiate(item, RandomPosition.GetRandomTablePosition(), Quaternion.identity);
             unclaimedItems.Add(createdObject);
         }
+        audiosource.PlayOneShot(organizationBell, 0.3f);
+        lastAudio = "orgbell";
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!audiosource.isPlaying) {
+            switch(lastAudio) {
+                case "orgbell":
+                    audiosource.PlayOneShot(cassetteNoises, 0.1f);
+                    lastAudio = "preorg";
+                    break;
+                case "preorg":
+                    audiosource.loop = true;
+                    audiosource.clip = organizationBGM;
+                    audiosource.volume = 0.03f;
+                    audiosource.Play();
+                    lastAudio = "org";
+                    break;
+                case "deliverybell":
+                    audiosource.PlayOneShot(cassetteNoises, 0.1f);
+                    lastAudio = "predelivery";
+                    break;
+                case "predelivery":
+                    audiosource.loop = true;
+                    audiosource.clip = deliveryBGM;
+                    audiosource.volume = 0.03f;
+                    audiosource.Play();
+                    lastAudio = "delivery";
+                    break;
+                default:
+                    break;
+            }
+        }
         if(phase == "delivery" && !gameComplete) {
             time += Time.deltaTime;
             timeSincePersonArrived += Time.deltaTime;
+            timeSinceCheckOrX += Time.deltaTime;
+            if (timeSinceCheckOrX > 2 && !clearXAndCheckCalled)
+            {
+                ClearXAndCheck();
+                clearXAndCheckCalled = true;
+            }
             if (timeSincePersonArrived > 2 && !isClueOneDisplayed)
             {
                 DisplayClueOne();
@@ -64,7 +111,6 @@ public class GameManager : MonoBehaviour
         }
         if(phase == "organization")
         {
-            //display speech bubble and start message
             DisplayStartingMessage();
             //check all "unclaimed" items are in a box (active = false)
             if(unclaimedItems.Find(item => item.activeSelf == true) == null)
@@ -89,7 +135,7 @@ public class GameManager : MonoBehaviour
             int randomPosition = Random.Range(0, unclaimedItems.Count);
             GameObject claimedItem = unclaimedItems[randomPosition];
             unclaimedItems.RemoveAt(randomPosition);
-            GameObject newPerson = Instantiate(personPrefab, new Vector3(-12, -2, 0), Quaternion.identity);
+            GameObject newPerson = Instantiate(personPrefab, new Vector3(-12, -2, -2), Quaternion.identity);
             people.Add(newPerson);
             Person personBehavior = newPerson.GetComponent<Person>();
             personBehavior.SetLostItem(claimedItem);
@@ -103,6 +149,12 @@ public class GameManager : MonoBehaviour
     public void SetPhase(string phase) {
         // provide "organization" or "delivery" (or other phase handlers?)
         this.phase = phase;
+        if(phase == "delivery") {
+            audiosource.Stop();
+            audiosource.volume = 1;
+            audiosource.PlayOneShot(deliveryBell, 0.3f);
+            lastAudio = "deliverybell";
+        }
     }
 
     public string GetPhase() {
@@ -135,9 +187,10 @@ public class GameManager : MonoBehaviour
     {
         Person activePersonBehavior = activePerson.GetComponent<Person>();
         activePersonBehavior.ExitScene();
-
         people.Remove(activePerson);
+
         gameCanvas.GetComponent<canvasSpeech>().ClearSpeechBubble();
+        ShowCheckOrX(true, false);
         Destroy(item);
 
         if (people.Count > 0)
@@ -158,6 +211,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("NOPE THAT WAS WRONG");
         item.transform.position = RandomPosition.GetRandomTablePosition();
+        ShowCheckOrX(false, true);
     }
 
     void DisplayClueOne()
@@ -189,7 +243,37 @@ public class GameManager : MonoBehaviour
 
     void DisplayStartingMessage()
     {
-        Debug.Log("GameManager triggering DisplayStartingMessage");
-        gameCanvas.GetComponent<canvasSpeech>().ShowStartMessage();
+        if (!startingMessageShown)
+        {
+            Debug.Log("GameManager triggering DisplayStartingMessage");
+            gameCanvas.GetComponent<canvasSpeech>().ShowStartMessage();
+            startingMessageShown = true;
+        }
+        
+    }
+
+    void ClearXAndCheck()
+    {
+        Debug.Log("Hiding Check and X");
+        gameCanvas.GetComponent<canvasSpeech>().showRedX(false);
+        gameCanvas.GetComponent<canvasSpeech>().showGreenCheck(false);
+    }
+    
+    void ShowCheckOrX(bool showCheck, bool showX)
+    {
+        if (showCheck)
+        {
+            Debug.Log("Showing Check");
+            GameObject.FindGameObjectWithTag("validateaudio").GetComponent<ValidAudioController>().ValidSound();
+            gameCanvas.GetComponent<canvasSpeech>().showGreenCheck(true);
+        }
+        if (showX)
+        {
+            Debug.Log("Showing X");
+            GameObject.FindGameObjectWithTag("validateaudio").GetComponent<ValidAudioController>().InvalidSound();
+            gameCanvas.GetComponent<canvasSpeech>().showRedX(true);
+        }
+        timeSinceCheckOrX = 0;
+        clearXAndCheckCalled = false;
     }
 }

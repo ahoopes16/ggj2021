@@ -20,6 +20,6 @@ public class PlayBetweenScenes : MonoBehaviour
     public void StopMusic()
     {
         _audioSource = GetComponent<AudioSource>();
-         _audioSource.Stop();
+        _audioSource.Stop();
     }
 }

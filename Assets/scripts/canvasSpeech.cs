@@ -11,6 +11,8 @@ public class canvasSpeech : MonoBehaviour
     private GameObject clueThree;
     private GameObject startingMessage;
     private GameObject janitor;
+    private GameObject redX;
+    private GameObject greenCheck;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,8 @@ public class canvasSpeech : MonoBehaviour
         clueThree = transform.Find("Clue3").gameObject;
         startingMessage = transform.Find("StartingMessage").gameObject;
         janitor = transform.Find("Janitor").gameObject;
+        redX = transform.Find("RedX").gameObject;
+        greenCheck = transform.Find("GreenCheck").gameObject;
 
         ClearSpeechBubble();
     }
@@ -33,6 +37,8 @@ public class canvasSpeech : MonoBehaviour
         clueThree.SetActive(false);
         startingMessage.SetActive(false);
         janitor.SetActive(false);
+        redX.SetActive(false);
+        greenCheck.SetActive(false);
     }
 
     public void SetClueOne(string clue)
@@ -60,5 +66,15 @@ public class canvasSpeech : MonoBehaviour
         speechBubble.SetActive(true);
         startingMessage.SetActive(true);
         janitor.SetActive(true);
+    }
+
+    public void showRedX(bool value)
+    {
+        redX.SetActive(value);
+    }
+
+    public void showGreenCheck(bool value)
+    {
+        greenCheck.SetActive(value);
     }
 }
