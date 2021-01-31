@@ -7,6 +7,8 @@ public class Box : MonoBehaviour
     public Texture2D openSprite;
     public Texture2D closedSprite;
     public List<GameObject> inventory;
+    public AudioClip boxOpen;
+    public AudioClip boxDrop;
     private List<GameObject> lastOwnedItems = new List<GameObject>();
     private bool isOpen = false;
     
@@ -23,11 +25,13 @@ public class Box : MonoBehaviour
     }
 
     public void AddObject(GameObject obj) {
+        GetComponent<AudioSource>().PlayOneShot(boxDrop, 0.5f);
         inventory.Add(obj);
         obj.GetComponent<Item>().SetBox(gameObject.name);
     }
 
     public void OnMouseUp() {
+        GetComponent<AudioSource>().PlayOneShot(boxOpen, 0.4f);
         SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
 
         if (!isOpen)
