@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class box : MonoBehaviour
+public class Box : MonoBehaviour
 {
     private float xRange = 2f;
     private float yRange = 2f;
@@ -20,7 +20,7 @@ public class box : MonoBehaviour
         
     }
 
-    public void addObject(GameObject obj) {
+    public void AddObject(GameObject obj) {
         inventory.Add(obj);
     }
 

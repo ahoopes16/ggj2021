@@ -67,7 +67,7 @@ public class ItemMetaData
         { "whistle", new ItemData("whistle", "something you put in your mouth") }
     };
 
-    public ItemData getMetaDataForItem(string itemName)
+    public ItemData GetMetaDataForItem(string itemName)
     {
         Debug.Log($"Getting ItemData for {itemName}");
         ItemData value;

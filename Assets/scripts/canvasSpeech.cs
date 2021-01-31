@@ -18,10 +18,10 @@ public class canvasSpeech : MonoBehaviour
         clueTwo = transform.Find("Clue2").gameObject;
         clueThree = transform.Find("Clue3").gameObject;
 
-        clearSpeechBubble();
+        ClearSpeechBubble();
     }
 
-    public void clearSpeechBubble()
+    public void ClearSpeechBubble()
     {
         speechBubble.SetActive(false);
         clueOne.SetActive(false);
@@ -29,7 +29,7 @@ public class canvasSpeech : MonoBehaviour
         clueThree.SetActive(false);
     }
 
-    public void setClueOne(string clue)
+    public void SetClueOne(string clue)
     {
         Debug.Log($"Setting clue one to {clue}");
         speechBubble.SetActive(true);
@@ -37,13 +37,13 @@ public class canvasSpeech : MonoBehaviour
         clueOne.SetActive(true);
     }
 
-    public void setClueTwo(string clue)
+    public void SetClueTwo(string clue)
     {
         clueTwo.GetComponent<Text>().text = clue;
         clueTwo.SetActive(true);
     }
 
-    public void setClueThree(string clue)
+    public void SetClueThree(string clue)
     {
         clueThree.GetComponent<Text>().text = clue;
         clueThree.SetActive(true);

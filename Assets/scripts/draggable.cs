@@ -36,7 +36,7 @@ public class draggable : MonoBehaviour
             
             // Determine if we are colliding with a box or a person
             GameObject obj = GameObject.Find(overlapping[0]);
-            box boxComponent = obj.GetComponent<box>();
+            Box boxComponent = obj.GetComponent<Box>();
             Person personComponent = obj.GetComponent<Person>();
 
             // It's a box! Add item and hide it

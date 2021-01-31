@@ -23,12 +23,12 @@ public class Person : MonoBehaviour
         }
     }
 
-    public void setLostItem(GameObject item)
+    public void SetLostItem(GameObject item)
     {
         lostItem = item;
     }
 
-    public void setLostItemMetaData(ItemData itemMetaData)
+    public void SetLostItemMetaData(ItemData itemMetaData)
     {
         lostItemMetaData = itemMetaData;
     }
@@ -39,18 +39,18 @@ public class Person : MonoBehaviour
 
         return item == lostItem;
     }
-    public string getClueOne()
+    public string GetClueOne()
     {
         return $"I'm looking for {lostItemMetaData.typeHint}.";
     }
 
-    public string getClueTwo()
+    public string GetClueTwo()
     {
         itemColor lostItemColor = lostItem.GetComponent<itemColor>();
         return $"I think it was {lostItemColor.GetColorName()}.";
     }
 
-    public string getClueThree()
+    public string GetClueThree()
     {
         return $"Oh yeah! I lost my {lostItemMetaData.displayName}.";
     }
