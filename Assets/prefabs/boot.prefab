@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5966566092177541055}
   - component: {fileID: 1814358912753255924}
   m_Layer: 0
-  m_Name: Boot
+  m_Name: boot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.02406478, y: -0.21056795}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -110,7 +110,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.12, y: 5.12}
+  m_Size: {x: 4.2536635, y: 4.698864}
   m_EdgeRadius: 0
 --- !u!114 &5966566092177541053
 MonoBehaviour:
