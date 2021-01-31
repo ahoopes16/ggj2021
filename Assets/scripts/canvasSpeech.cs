@@ -9,6 +9,8 @@ public class canvasSpeech : MonoBehaviour
     private GameObject clueOne;
     private GameObject clueTwo;
     private GameObject clueThree;
+    private GameObject startingMessage;
+    private GameObject janitor;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,8 @@ public class canvasSpeech : MonoBehaviour
         clueOne = transform.Find("Clue1").gameObject;
         clueTwo = transform.Find("Clue2").gameObject;
         clueThree = transform.Find("Clue3").gameObject;
+        startingMessage = transform.Find("StartingMessage").gameObject;
+        janitor = transform.Find("Janitor").gameObject;
 
         ClearSpeechBubble();
     }
@@ -27,6 +31,8 @@ public class canvasSpeech : MonoBehaviour
         clueOne.SetActive(false);
         clueTwo.SetActive(false);
         clueThree.SetActive(false);
+        startingMessage.SetActive(false);
+        janitor.SetActive(false);
     }
 
     public void SetClueOne(string clue)
@@ -47,5 +53,12 @@ public class canvasSpeech : MonoBehaviour
     {
         clueThree.GetComponent<Text>().text = clue;
         clueThree.SetActive(true);
+    }
+
+    public void ShowStartMessage()
+    {
+        speechBubble.SetActive(true);
+        startingMessage.SetActive(true);
+        janitor.SetActive(true);
     }
 }
