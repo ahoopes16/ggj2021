@@ -6,6 +6,7 @@ TagManager:
   tags:
   - menuaudio
   - buttonaudio
+  - validateaudio
   layers:
   - Default
   - TransparentFX

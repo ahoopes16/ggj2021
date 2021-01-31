@@ -264,11 +264,13 @@ public class GameManager : MonoBehaviour
         if (showCheck)
         {
             Debug.Log("Showing Check");
+            GameObject.FindGameObjectWithTag("validateaudio").GetComponent<ValidAudioController>().ValidSound();
             gameCanvas.GetComponent<canvasSpeech>().showGreenCheck(true);
         }
         if (showX)
         {
             Debug.Log("Showing X");
+            GameObject.FindGameObjectWithTag("validateaudio").GetComponent<ValidAudioController>().InvalidSound();
             gameCanvas.GetComponent<canvasSpeech>().showRedX(true);
         }
         timeSinceCheckOrX = 0;
