@@ -12,6 +12,6 @@ public static class RandomPosition
         float randomX = Random.Range(1.5f - xRange, 1.5f + xRange);
         float randomY = Random.Range(-0.82f - yRange, -0.82f + yRange);
 
-        return new Vector2(randomX, randomY);
+        return new Vector3(randomX, randomY);
     }
 }

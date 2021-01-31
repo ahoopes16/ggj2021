@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
             // Get random item
             GameObject item = items[Random.Range(0, items.Count)];
             items.Remove(item);
-            item.gameObject.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+            item.gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
 
             GameObject createdObject;
             createdObject = Instantiate(item, RandomPosition.GetRandomTablePosition(), Quaternion.identity);
