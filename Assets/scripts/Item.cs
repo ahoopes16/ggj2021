@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class itemColor : MonoBehaviour
+public class Item : MonoBehaviour
 {
     private string colorName = "none";
+    private string box;
+
     static readonly Dictionary<string, Color> colors = new Dictionary<string, Color>
     {
         { "white", new Color32(255,255,255,255) },
@@ -37,5 +39,15 @@ public class itemColor : MonoBehaviour
     public string GetColorName()
     {
         return colorName;
+    }
+
+    public void SetBox(string boxName)
+    {
+        box = boxName;
+    }
+
+    public string GetBox()
+    {
+        return box;
     }
 }

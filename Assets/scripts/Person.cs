@@ -46,7 +46,7 @@ public class Person : MonoBehaviour
 
     public string GetClueTwo()
     {
-        itemColor lostItemColor = lostItem.GetComponent<itemColor>();
+        Item lostItemColor = lostItem.GetComponent<Item>();
         return $"I think it was {lostItemColor.GetColorName()}.";
     }
 
