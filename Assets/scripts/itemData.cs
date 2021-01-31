@@ -34,7 +34,7 @@ public class ItemMetaData
         { "coin", new ItemData("coin", "something small and round") },
         { "compass", new ItemData("compass", "something you read") },
         { "d20", new ItemData("twenty-sided die", "something small and round") },
-        { "die", new ItemData("six sided die", "something small and round") },
+        { "d6", new ItemData("six sided die", "something small and round") },
         { "dress", new ItemData("dress", "something you wear") },
         { "earRings", new ItemData("earrings", "a head accessory") },
         { "flashDrive", new ItemData("flash drive", "a media device") },
