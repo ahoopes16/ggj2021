@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour
     public int numPeople;
     public GameObject gameCanvas;
     private string phase = "delivery";
-    private float xRange = 2f;
-    private float yRange = 2f;
     private List<GameObject> unclaimedItems = new List<GameObject>();
     private ItemMetaData itemMetaData = new ItemMetaData();
     private List<GameObject> people = new List<GameObject>();
@@ -38,13 +36,8 @@ public class GameManager : MonoBehaviour
             GameObject item = items[Random.Range(0, items.Count)];
             item.gameObject.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
 
-            // Put at random position
-            float randomX = Random.Range(1.5f - xRange, 1.5f + xRange);
-            float randomY = Random.Range(-0.82f - yRange, -0.82f + yRange);
-
             // Instantiate
-            Debug.Log("Instantiating item " + item.name + " at position (" + randomX + "," + randomY + ")");
-            GameObject createdObject = Instantiate(item, new Vector3(randomX, randomY, -2), Quaternion.identity);
+            GameObject createdObject = Instantiate(item, RandomPosition.GetRandomTablePosition(), Quaternion.identity);
             unclaimedItems.Add(createdObject);
         }
 
@@ -117,7 +110,7 @@ public class GameManager : MonoBehaviour
             HandleValidItem(item);
         } else
         {
-            HandleInvalidItem();
+            HandleInvalidItem(item);
         }
 
     }
@@ -145,9 +138,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void HandleInvalidItem()
+    void HandleInvalidItem(GameObject item)
     {
         Debug.Log("NOPE THAT WAS WRONG");
+        item.transform.position = RandomPosition.GetRandomTablePosition();
     }
 
     void DisplayClueOne()

@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
-    private float xRange = 2f;
-    private float yRange = 2f;
-
     public List<GameObject> inventory;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -26,10 +24,7 @@ public class Box : MonoBehaviour
 
     public void OnMouseUp() {
         for (int index = 0; index < inventory.Count; index++) {
-            float randomX = Random.Range(1.5f - xRange, 1.5f + xRange);
-            float randomY = Random.Range(-0.82f - yRange, -0.82f + yRange);
-            inventory[index].transform.position = new Vector2(randomX, randomY);
-         
+            inventory[index].transform.position = RandomPosition.GetRandomTablePosition();
             inventory[index].SetActive(true);
         }
         inventory.Clear();
