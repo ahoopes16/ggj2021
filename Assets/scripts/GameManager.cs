@@ -10,15 +10,14 @@ public class GameManager : MonoBehaviour
     public int numItemsToUse;
     public int numPeople;
     private string phase = "organization";
-    private float xRange = 3f;
-    private float yRange = 3f;
+    private float xRange = 2f;
+    private float yRange = 2f;
     private List<GameObject> unclaimedItems = new List<GameObject>();
     private ItemMetaData itemMetaData = new ItemMetaData();
 
     // Start is called before the first frame update
     void Start()
     {
-        
         if (numItemsToUse < 1)
         {
             numItemsToUse = 20;
@@ -29,14 +28,15 @@ public class GameManager : MonoBehaviour
         {
             // Get random item
             GameObject item = items[Random.Range(0, items.Count)];
+            item.gameObject.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
 
             // Put at random position
-            float randomX = Random.Range(0 - xRange, 0 + xRange);
-            float randomY = Random.Range(0 - yRange, 0 + yRange);
+            float randomX = Random.Range(1.5f - xRange, 1.5f + xRange);
+            float randomY = Random.Range(-0.82f - yRange, -0.82f + yRange);
 
             // Instantiate
             Debug.Log("Instantiating item " + item.name + " at position (" + randomX + "," + randomY + ")");
-            GameObject createdObject = Instantiate(item, new Vector3(randomX, randomY, 0), Quaternion.identity);
+            GameObject createdObject = Instantiate(item, new Vector3(randomX, randomY, -2), Quaternion.identity);
             unclaimedItems.Add(createdObject);
         }
 
