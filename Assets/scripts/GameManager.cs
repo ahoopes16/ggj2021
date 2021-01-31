@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public int numItemsToUse;
     public int numPeople;
     public GameObject gameCanvas;
-    private string phase = "delivery";
+    private string phase = "organization";
     private List<GameObject> unclaimedItems = new List<GameObject>();
     private ItemMetaData itemMetaData = new ItemMetaData();
     private List<GameObject> people = new List<GameObject>();
@@ -41,27 +41,6 @@ public class GameManager : MonoBehaviour
             createdObject = Instantiate(item, RandomPosition.GetRandomTablePosition(), Quaternion.identity);
             unclaimedItems.Add(createdObject);
         }
-
-        // Generate People
-        if(numPeople < 1)
-        {
-            numPeople = 10;
-        }
-
-        for(int i = 0; i < numPeople; i++)
-        {
-            int randomPosition = Random.Range(0, unclaimedItems.Count);
-            GameObject claimedItem = unclaimedItems[randomPosition];
-            unclaimedItems.RemoveAt(randomPosition);
-            GameObject newPerson = Instantiate(personPrefab, new Vector3(-12, -2, 0), Quaternion.identity);
-            people.Add(newPerson);
-            Person personBehavior = newPerson.GetComponent<Person>();
-            personBehavior.SetLostItem(claimedItem);
-            personBehavior.SetLostItemMetaData(itemMetaData.GetMetaDataForItem(claimedItem.name));
-        }
-
-        activePerson = people[0];
-        activePerson.GetComponent<Person>().EnterScene();
     }
 
     // Update is called once per frame
@@ -83,6 +62,42 @@ public class GameManager : MonoBehaviour
                 DisplayClueThree();
             }
         }
+        if(phase == "organization")
+        {
+            //display speech bubble and start message
+            DisplayStartingMessage();
+            //check all "unclaimed" items are in a box (active = false)
+            if(unclaimedItems.Find(item => item.activeSelf == true) == null)
+            {
+                gameCanvas.GetComponent<canvasSpeech>().ClearSpeechBubble();
+                SetPhase("delivery");
+                GeneratePeople();
+            }
+        }
+    }
+
+    private void GeneratePeople()
+    {
+        // Generate People
+        if (numPeople < 1)
+        {
+            numPeople = 10;
+        }
+
+        for (int i = 0; i < numPeople; i++)
+        {
+            int randomPosition = Random.Range(0, unclaimedItems.Count);
+            GameObject claimedItem = unclaimedItems[randomPosition];
+            unclaimedItems.RemoveAt(randomPosition);
+            GameObject newPerson = Instantiate(personPrefab, new Vector3(-12, -2, 0), Quaternion.identity);
+            people.Add(newPerson);
+            Person personBehavior = newPerson.GetComponent<Person>();
+            personBehavior.SetLostItem(claimedItem);
+            personBehavior.SetLostItemMetaData(itemMetaData.GetMetaDataForItem(claimedItem.name));
+        }
+
+        activePerson = people[0];
+        activePerson.GetComponent<Person>().EnterScene();
     }
 
     public void SetPhase(string phase) {
@@ -170,5 +185,11 @@ public class GameManager : MonoBehaviour
         string clue = personBehavior.GetClueThree();
         gameCanvas.GetComponent<canvasSpeech>().SetClueThree(clue);
         isClueThreeDisplayed = true;
+    }
+
+    void DisplayStartingMessage()
+    {
+        Debug.Log("GameManager triggering DisplayStartingMessage");
+        gameCanvas.GetComponent<canvasSpeech>().ShowStartMessage();
     }
 }
