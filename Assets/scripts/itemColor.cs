@@ -34,7 +34,7 @@ public class itemColor : MonoBehaviour
         sprite.color = randomColor;
     }
 
-    string GetColorName()
+    public string GetColorName()
     {
         return colorName;
     }

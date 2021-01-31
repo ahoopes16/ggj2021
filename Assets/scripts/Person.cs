@@ -24,9 +24,25 @@ public class Person : MonoBehaviour
         if (item == lostItem)
         {
             Debug.Log("HOLY COW THAT'S THE ITEM");
-        } else
+        }
+        else
         {
             Debug.Log("Nope, you suck");
         }
+    }
+    public string getClueOne()
+    {
+        return $"I'm looking for {lostItemMetaData.typeHint}.";
+    }
+
+    public string getClueTwo()
+    {
+        itemColor lostItemColor = lostItem.GetComponent<itemColor>();
+        return $"I think it was {lostItemColor.GetColorName()}.";
+    }
+
+    public string getClueThree()
+    {
+        return $"Oh yeah! I lost my {lostItemMetaData.displayName}.";
     }
 }
