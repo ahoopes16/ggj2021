@@ -300,7 +300,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 250600388}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &573609655
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,7 +841,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2762366446329325530, guid: c8963ca6fb780a54bb32c64549d9930b, type: 3}
+      - m_Target: {fileID: 783682722}
         m_TargetAssemblyTypeName: sceneswitcher, Assembly-CSharp
         m_MethodName: ToCredits
         m_Mode: 1
