@@ -26,7 +26,13 @@ public class GameManager : MonoBehaviour
     private bool isClueTwoDisplayed = false;
     private bool isClueThreeDisplayed = false;
     private bool gameComplete = false;
+<<<<<<< HEAD
     private AudioSource audiosource;
+=======
+    private float timeSinceCheckOrX = 0;
+    private bool startingMessageShown = false;
+    private bool clearXAndCheckCalled = false;
+>>>>>>> 3f7a982623e42e1efe4b996f43c307d0eabce176
 
     // Start is called before the first frame update
     void Start()
@@ -87,6 +93,12 @@ public class GameManager : MonoBehaviour
         if(phase == "delivery" && !gameComplete) {
             time += Time.deltaTime;
             timeSincePersonArrived += Time.deltaTime;
+            timeSinceCheckOrX += Time.deltaTime;
+            if (timeSinceCheckOrX > 2 && !clearXAndCheckCalled)
+            {
+                ClearXAndCheck();
+                clearXAndCheckCalled = true;
+            }
             if (timeSincePersonArrived > 2 && !isClueOneDisplayed)
             {
                 DisplayClueOne();
@@ -102,7 +114,6 @@ public class GameManager : MonoBehaviour
         }
         if(phase == "organization")
         {
-            //display speech bubble and start message
             DisplayStartingMessage();
             //check all "unclaimed" items are in a box (active = false)
             if(unclaimedItems.Find(item => item.activeSelf == true) == null)
@@ -127,7 +138,7 @@ public class GameManager : MonoBehaviour
             int randomPosition = Random.Range(0, unclaimedItems.Count);
             GameObject claimedItem = unclaimedItems[randomPosition];
             unclaimedItems.RemoveAt(randomPosition);
-            GameObject newPerson = Instantiate(personPrefab, new Vector3(-12, -2, 0), Quaternion.identity);
+            GameObject newPerson = Instantiate(personPrefab, new Vector3(-12, -2, -2), Quaternion.identity);
             people.Add(newPerson);
             Person personBehavior = newPerson.GetComponent<Person>();
             personBehavior.SetLostItem(claimedItem);
@@ -179,9 +190,10 @@ public class GameManager : MonoBehaviour
     {
         Person activePersonBehavior = activePerson.GetComponent<Person>();
         activePersonBehavior.ExitScene();
-
         people.Remove(activePerson);
+
         gameCanvas.GetComponent<canvasSpeech>().ClearSpeechBubble();
+        ShowCheckOrX(true, false);
         Destroy(item);
 
         if (people.Count > 0)
@@ -202,6 +214,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("NOPE THAT WAS WRONG");
         item.transform.position = RandomPosition.GetRandomTablePosition();
+        ShowCheckOrX(false, true);
     }
 
     void DisplayClueOne()
@@ -233,7 +246,35 @@ public class GameManager : MonoBehaviour
 
     void DisplayStartingMessage()
     {
-        Debug.Log("GameManager triggering DisplayStartingMessage");
-        gameCanvas.GetComponent<canvasSpeech>().ShowStartMessage();
+        if (!startingMessageShown)
+        {
+            Debug.Log("GameManager triggering DisplayStartingMessage");
+            gameCanvas.GetComponent<canvasSpeech>().ShowStartMessage();
+            startingMessageShown = true;
+        }
+        
+    }
+
+    void ClearXAndCheck()
+    {
+        Debug.Log("Hiding Check and X");
+        gameCanvas.GetComponent<canvasSpeech>().showRedX(false);
+        gameCanvas.GetComponent<canvasSpeech>().showGreenCheck(false);
+    }
+    
+    void ShowCheckOrX(bool showCheck, bool showX)
+    {
+        if (showCheck)
+        {
+            Debug.Log("Showing Check");
+            gameCanvas.GetComponent<canvasSpeech>().showGreenCheck(true);
+        }
+        if (showX)
+        {
+            Debug.Log("Showing X");
+            gameCanvas.GetComponent<canvasSpeech>().showRedX(true);
+        }
+        timeSinceCheckOrX = 0;
+        clearXAndCheckCalled = false;
     }
 }
