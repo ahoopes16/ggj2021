@@ -10,6 +10,12 @@ public class GameManager : MonoBehaviour
     public int numItemsToUse;
     public int numPeople;
     public GameObject gameCanvas;
+    public AudioClip organizationBell;
+    public AudioClip deliveryBell;
+    public AudioClip organizationBGM;
+    public AudioClip deliveryBGM;
+    public AudioClip cassetteNoises;
+    private string lastAudio = "";
     private string phase = "organization";
     private List<GameObject> unclaimedItems = new List<GameObject>();
     private ItemMetaData itemMetaData = new ItemMetaData();
@@ -20,10 +26,12 @@ public class GameManager : MonoBehaviour
     private bool isClueTwoDisplayed = false;
     private bool isClueThreeDisplayed = false;
     private bool gameComplete = false;
+    private AudioSource audiosource;
 
     // Start is called before the first frame update
     void Start()
     {
+        audiosource = GetComponent<AudioSource>();
         if (numItemsToUse < 1)
         {
             numItemsToUse = 20;
@@ -41,11 +49,41 @@ public class GameManager : MonoBehaviour
             createdObject = Instantiate(item, RandomPosition.GetRandomTablePosition(), Quaternion.identity);
             unclaimedItems.Add(createdObject);
         }
+        audiosource.PlayOneShot(organizationBell, 0.3f);
+        lastAudio = "orgbell";
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!audiosource.isPlaying) {
+            switch(lastAudio) {
+                case "orgbell":
+                    audiosource.PlayOneShot(cassetteNoises, 0.1f);
+                    lastAudio = "preorg";
+                    break;
+                case "preorg":
+                    audiosource.loop = true;
+                    audiosource.clip = organizationBGM;
+                    audiosource.volume = 0.03f;
+                    audiosource.Play();
+                    lastAudio = "org";
+                    break;
+                case "deliverybell":
+                    audiosource.PlayOneShot(cassetteNoises, 0.1f);
+                    lastAudio = "predelivery";
+                    break;
+                case "predelivery":
+                    audiosource.loop = true;
+                    audiosource.clip = deliveryBGM;
+                    audiosource.volume = 0.03f;
+                    audiosource.Play();
+                    lastAudio = "delivery";
+                    break;
+                default:
+                    break;
+            }
+        }
         if(phase == "delivery" && !gameComplete) {
             time += Time.deltaTime;
             timeSincePersonArrived += Time.deltaTime;
@@ -103,6 +141,12 @@ public class GameManager : MonoBehaviour
     public void SetPhase(string phase) {
         // provide "organization" or "delivery" (or other phase handlers?)
         this.phase = phase;
+        if(phase == "delivery") {
+            audiosource.Stop();
+            audiosource.volume = 1;
+            audiosource.PlayOneShot(deliveryBell, 0.3f);
+            lastAudio = "deliverybell";
+        }
     }
 
     public string GetPhase() {

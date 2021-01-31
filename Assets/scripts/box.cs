@@ -25,7 +25,7 @@ public class Box : MonoBehaviour
     }
 
     public void AddObject(GameObject obj) {
-        GetComponent<AudioSource>().PlayOneShot(boxDrop, 0.5f);
+        GetComponent<AudioSource>().PlayOneShot(boxDrop, 0.7f);
         inventory.Add(obj);
         obj.GetComponent<Item>().SetBox(gameObject.name);
     }
