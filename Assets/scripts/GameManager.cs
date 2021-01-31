@@ -26,13 +26,10 @@ public class GameManager : MonoBehaviour
     private bool isClueTwoDisplayed = false;
     private bool isClueThreeDisplayed = false;
     private bool gameComplete = false;
-<<<<<<< HEAD
     private AudioSource audiosource;
-=======
     private float timeSinceCheckOrX = 0;
     private bool startingMessageShown = false;
     private bool clearXAndCheckCalled = false;
->>>>>>> 3f7a982623e42e1efe4b996f43c307d0eabce176
 
     // Start is called before the first frame update
     void Start()
