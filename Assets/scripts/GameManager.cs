@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
         else
         {
             gameComplete = true;
-            Debug.Log("CONGRATS YOU'RE DONE!!!!");
+            gameCanvas.GetComponent<canvasFinalScore>().ShowFinalScore();
         }
     }
 
