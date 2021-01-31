@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
             int randomPosition = Random.Range(0, unclaimedItems.Count);
             GameObject claimedItem = unclaimedItems[randomPosition];
             unclaimedItems.RemoveAt(randomPosition);
-            GameObject newPerson = Instantiate(personPrefab, new Vector3(-12, 0, 0), Quaternion.identity);
+            GameObject newPerson = Instantiate(personPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             Person personBehavior = newPerson.GetComponent<Person>();
             personBehavior.setLostItem(claimedItem);
             personBehavior.setLostItemMetaData(itemMetaData.getMetaDataForItem(claimedItem.name));

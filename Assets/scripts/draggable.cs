@@ -7,9 +7,6 @@ public class draggable : MonoBehaviour
     private bool isDragging = false;
     private List<string> overlapping = new List<string>();
 
-    void Start() {
-    }
-    // Update is called once per frame
     void Update()
     {
         if (isDragging) {
@@ -24,15 +21,32 @@ public class draggable : MonoBehaviour
     }
 
     public void OnMouseUp() {
-        isDragging = false;
         Debug.Log("letting go");
-        // if colliding with a box, add obj to box list, disappear obj
+        isDragging = false;
+
+
         if(overlapping.Count == 1) {
             Debug.Log("overlapping one " + overlapping[0]);
-            GameObject box = GameObject.Find(overlapping[0]);
-            box.GetComponent<box>().addObject(this.gameObject);
-            // hide gameobject
-            this.gameObject.SetActive(false);
+            
+            // Determine if we are colliding with a box or a person
+            GameObject obj = GameObject.Find(overlapping[0]);
+            box boxComponent = obj.GetComponent<box>();
+            Person personComponent = obj.GetComponent<Person>();
+
+            // It's a box! Add item and hide it
+            if (boxComponent != null)
+            {
+                Debug.Log("Colliding with a box!");
+                boxComponent.addObject(this.gameObject);
+                this.gameObject.SetActive(false);
+            }
+            
+            // It's a person! Give them the item for validation
+            else if (personComponent != null)
+            {
+                Debug.Log("Colliding with a person!");
+                personComponent.ValidateItem(this.gameObject);
+            }
         }
     }
 

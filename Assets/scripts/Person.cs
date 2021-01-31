@@ -6,15 +6,6 @@ public class Person : MonoBehaviour
 {
     private GameObject lostItem;
     private ItemData lostItemMetaData;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
 
     public void setLostItem(GameObject item)
     {
@@ -24,5 +15,18 @@ public class Person : MonoBehaviour
     public void setLostItemMetaData(ItemData itemMetaData)
     {
         lostItemMetaData = itemMetaData;
+    }
+
+    public void ValidateItem(GameObject item)
+    {
+        Debug.Log("Validating item " + item);
+
+        if (item == lostItem)
+        {
+            Debug.Log("HOLY COW THAT'S THE ITEM");
+        } else
+        {
+            Debug.Log("Nope, you suck");
+        }
     }
 }
