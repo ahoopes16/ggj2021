@@ -6,6 +6,22 @@ public class Person : MonoBehaviour
 {
     private GameObject lostItem;
     private ItemData lostItemMetaData;
+    private bool enterFlag = false;
+    private bool exitFlag = false;
+
+    public void Update()
+    {
+        if (enterFlag)
+        {
+            transform.position = Vector2.Lerp(transform.position, new Vector2(-4.5f, transform.position.y), 3f * Time.deltaTime);
+
+        }
+
+        if (exitFlag)
+        {
+            transform.position = Vector2.Lerp(transform.position, new Vector2(-12, transform.position.y), 2f * Time.deltaTime);
+        }
+    }
 
     public void setLostItem(GameObject item)
     {
@@ -17,18 +33,11 @@ public class Person : MonoBehaviour
         lostItemMetaData = itemMetaData;
     }
 
-    public void ValidateItem(GameObject item)
+    public bool ValidateItem(GameObject item)
     {
         Debug.Log("Validating item " + item);
 
-        if (item == lostItem)
-        {
-            Debug.Log("HOLY COW THAT'S THE ITEM");
-        }
-        else
-        {
-            Debug.Log("Nope, you suck");
-        }
+        return item == lostItem;
     }
     public string getClueOne()
     {
@@ -44,5 +53,18 @@ public class Person : MonoBehaviour
     public string getClueThree()
     {
         return $"Oh yeah! I lost my {lostItemMetaData.displayName}.";
+    }
+
+    public void EnterScene()
+    {
+        Debug.Log("Person enter scene called!");
+        enterFlag = true;
+        exitFlag = false;
+    }
+
+    public void ExitScene()
+    {
+        enterFlag = false;
+        exitFlag = true;
     }
 }

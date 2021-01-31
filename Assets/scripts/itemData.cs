@@ -69,8 +69,9 @@ public class ItemMetaData
 
     public ItemData getMetaDataForItem(string itemName)
     {
+        Debug.Log($"Getting ItemData for {itemName}");
         ItemData value;
-        gameObjectItemDataDict.TryGetValue(itemName, out value);
+        gameObjectItemDataDict.TryGetValue(itemName.Replace("(Clone)",""), out value);
         return value;
     }
 }

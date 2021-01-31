@@ -9,11 +9,18 @@ public class GameManager : MonoBehaviour
     public GameObject personPrefab;
     public int numItemsToUse;
     public int numPeople;
-    private string phase = "organization";
+    public GameObject gameCanvas;
+    private string phase = "delivery";
     private float xRange = 2f;
     private float yRange = 2f;
     private List<GameObject> unclaimedItems = new List<GameObject>();
     private ItemMetaData itemMetaData = new ItemMetaData();
+    private List<GameObject> people = new List<GameObject>();
+    private GameObject activePerson;
+    private float timeSincePersonArrived = 0;
+    private bool isClueOneDisplayed = false;
+    private bool isClueTwoDisplayed = false;
+    private bool isClueThreeDisplayed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -51,11 +58,15 @@ public class GameManager : MonoBehaviour
             int randomPosition = Random.Range(0, unclaimedItems.Count);
             GameObject claimedItem = unclaimedItems[randomPosition];
             unclaimedItems.RemoveAt(randomPosition);
-            GameObject newPerson = Instantiate(personPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            GameObject newPerson = Instantiate(personPrefab, new Vector3(-12, -2, 0), Quaternion.identity);
+            people.Add(newPerson);
             Person personBehavior = newPerson.GetComponent<Person>();
             personBehavior.setLostItem(claimedItem);
             personBehavior.setLostItemMetaData(itemMetaData.getMetaDataForItem(claimedItem.name));
         }
+
+        activePerson = people[0];
+        activePerson.GetComponent<Person>().EnterScene();
     }
 
     // Update is called once per frame
@@ -63,6 +74,19 @@ public class GameManager : MonoBehaviour
     {
         if(phase == "delivery") {
             time += Time.deltaTime;
+            timeSincePersonArrived += Time.deltaTime;
+            if (timeSincePersonArrived > 2 && !isClueOneDisplayed)
+            {
+                displayClueOne();
+            }
+            if (timeSincePersonArrived > 7 && !isClueTwoDisplayed)
+            {
+                displayClueTwo();
+            }
+            if (timeSincePersonArrived > 12 && !isClueThreeDisplayed)
+            {
+                displayClueThree();
+            }
         }
     }
 
@@ -82,9 +106,54 @@ public class GameManager : MonoBehaviour
         item.SetActive(false);
     }
 
-    public void ValidateItemForPerson(GameObject item, Person person)
+    public void ValidateItemForPerson(GameObject item)
     {
-        Debug.Log("GameManager is validating item " + item + " with person " + person);
-        person.ValidateItem(item);
+        Debug.Log("GameManager is validating item " + item + " with person " + activePerson);
+        Person activePersonBehavior = activePerson.GetComponent<Person>();
+        bool isValid = activePersonBehavior.ValidateItem(item);
+        if (isValid)
+        {
+            activePersonBehavior.ExitScene();
+            people.Remove(activePerson);
+            gameCanvas.GetComponent<canvasSpeech>().clearSpeechBubble();
+            isClueOneDisplayed = isClueTwoDisplayed = isClueThreeDisplayed = false;
+
+            if (people.Count > 0)
+            {
+                activePerson = people[0];
+                activePerson.GetComponent<Person>().EnterScene();
+                timeSincePersonArrived = 0;
+            }
+            else
+            {
+                // end game
+            }
+        }
+
+    }
+
+    void displayClueOne()
+    {
+        Debug.Log("GameManager triggering displayClueOne");
+        Person personBehavior = activePerson.GetComponent<Person>();
+        string clue = personBehavior.getClueOne();
+        gameCanvas.GetComponent<canvasSpeech>().setClueOne(clue);
+        isClueOneDisplayed = true;
+    }
+    void displayClueTwo()
+    {
+        Debug.Log("GameManager triggering displayClueTwo");
+        Person personBehavior = activePerson.GetComponent<Person>();
+        string clue = personBehavior.getClueTwo();
+        gameCanvas.GetComponent<canvasSpeech>().setClueTwo(clue);
+        isClueTwoDisplayed = true;
+    }
+    void displayClueThree()
+    {
+        Debug.Log("GameManager triggering displayClueThree");
+        Person personBehavior = activePerson.GetComponent<Person>();
+        string clue = personBehavior.getClueThree();
+        gameCanvas.GetComponent<canvasSpeech>().setClueThree(clue);
+        isClueThreeDisplayed = true;
     }
 }

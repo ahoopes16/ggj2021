@@ -50,7 +50,7 @@ public class draggable : MonoBehaviour
             else if (personComponent != null)
             {
                 Debug.Log("Colliding with a person!");
-                gameManager.ValidateItemForPerson(this.gameObject, personComponent);
+                gameManager.ValidateItemForPerson(this.gameObject);
             }
         }
     }

@@ -31,6 +31,7 @@ public class canvasSpeech : MonoBehaviour
 
     public void setClueOne(string clue)
     {
+        Debug.Log($"Setting clue one to {clue}");
         speechBubble.SetActive(true);
         clueOne.GetComponent<Text>().text = clue;
         clueOne.SetActive(true);
