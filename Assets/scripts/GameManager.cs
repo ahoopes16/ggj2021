@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     private bool isClueOneDisplayed = false;
     private bool isClueTwoDisplayed = false;
     private bool isClueThreeDisplayed = false;
+    private bool gameComplete = false;
 
     // Start is called before the first frame update
     void Start()
@@ -72,7 +73,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(phase == "delivery") {
+        if(phase == "delivery" && !gameComplete) {
             time += Time.deltaTime;
             timeSincePersonArrived += Time.deltaTime;
             if (timeSincePersonArrived > 2 && !isClueOneDisplayed)
@@ -113,23 +114,40 @@ public class GameManager : MonoBehaviour
         bool isValid = activePersonBehavior.ValidateItem(item);
         if (isValid)
         {
-            activePersonBehavior.ExitScene();
-            people.Remove(activePerson);
-            gameCanvas.GetComponent<canvasSpeech>().ClearSpeechBubble();
-            isClueOneDisplayed = isClueTwoDisplayed = isClueThreeDisplayed = false;
-
-            if (people.Count > 0)
-            {
-                activePerson = people[0];
-                activePerson.GetComponent<Person>().EnterScene();
-                timeSincePersonArrived = 0;
-            }
-            else
-            {
-                // end game
-            }
+            HandleValidItem(item);
+        } else
+        {
+            HandleInvalidItem();
         }
 
+    }
+
+    void HandleValidItem(GameObject item)
+    {
+        Person activePersonBehavior = activePerson.GetComponent<Person>();
+        activePersonBehavior.ExitScene();
+
+        people.Remove(activePerson);
+        gameCanvas.GetComponent<canvasSpeech>().ClearSpeechBubble();
+        Destroy(item);
+
+        if (people.Count > 0)
+        {
+            isClueOneDisplayed = isClueTwoDisplayed = isClueThreeDisplayed = false;
+            activePerson = people[0];
+            activePerson.GetComponent<Person>().EnterScene();
+            timeSincePersonArrived = 0;
+        }
+        else
+        {
+            gameComplete = true;
+            Debug.Log("CONGRATS YOU'RE DONE!!!!");
+        }
+    }
+
+    void HandleInvalidItem()
+    {
+        Debug.Log("NOPE THAT WAS WRONG");
     }
 
     void DisplayClueOne()
