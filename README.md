@@ -9,10 +9,10 @@ Created for the St. Louis Global Game Jam 2021 by wherbig, jango2106, and ahoope
 This game was created using Unity2D, compiled using WebGL, and hosted on itch.io.
 
 ## Attributions
-[Mellau](https://freesound.org/people/Mellau/sounds/506052/) - Button click sounds
-music by [2mello](https://2mellomakes.bandcamp.com/) from the album [after midnight: unaired broadcasts](https://2mellomakes.bandcamp.com/album/after-midnight-unaired-broadcasts); licensed under CC3.0
-cassette tape SFX sourced from https://shapeforms.itch.io/cassette
-font is [Hachi Maru Pop](https://fonts.google.com/specimen/Hachi+Maru+Pop) sourced from Google Fonts under the OFL
+* [Mellau](https://freesound.org/people/Mellau/sounds/506052/) - Button click sounds
+* music by [2mello](https://2mellomakes.bandcamp.com/) from the album [after midnight: unaired broadcasts](https://2mellomakes.bandcamp.com/album/after-midnight-unaired-broadcasts); licensed under CC3.0
+* cassette tape SFX sourced from https://shapeforms.itch.io/cassette
+* font is [Hachi Maru Pop](https://fonts.google.com/specimen/Hachi+Maru+Pop) sourced from Google Fonts under the OFL
 
 ## Links
 * Play now on [itch.io](https://wherbig.itch.io/seymour)
